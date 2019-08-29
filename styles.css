@@ -2,6 +2,12 @@ body {
   padding: 10%;
 }
 
+form,
+h1 {
+  max-width: 400px;
+  margin: 10px auto;
+}
+
 .form-group {
   align-items: baseline;
 }
