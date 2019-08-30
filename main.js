@@ -100,15 +100,25 @@ const cryptos = [
     "EURS",
     "ZEN"
 ]
-
+let cryptos2 = [];
 let cryptoOption = document.querySelector("#crypto-currency");
-for (let i = 0; i < cryptos.length; i++) {
-    let option = document.createElement("option");
-    let text = document.createTextNode(cryptos[i])
-    option.appendChild(text);
-    cryptoOption.appendChild(option);
 
-}
+fetch(`https://www.cryptonator.com/api/currencies`)
+    .then((response) => response.json())
+    .then((myJson) => {
+        let data = JSON.parse(JSON.stringify(myJson));
+        data.rows.forEach(x => {
+            cryptos2.push(x.code)
+        });
+        console.log(data);
+        for (let i = 0; i < cryptos2.length; i++) {
+            let option = document.createElement("option");
+            let text = document.createTextNode(cryptos2[i])
+            option.appendChild(text);
+            cryptoOption.appendChild(option);
+        }
+    });
+
 
 const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
